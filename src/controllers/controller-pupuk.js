@@ -14,7 +14,6 @@ module.exports ={
             connection.query('SELECT * FROM pupuks;', function (error, results) {
                 if (error) throw error;
                 
-                // Check if results contains any data
                 if (results.length > 0) {
                     res.render('pupuk', {
                         url: 'http://localhost:5050/',

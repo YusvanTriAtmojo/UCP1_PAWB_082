@@ -10,12 +10,11 @@ const bibitRoutes = require("./src/routes/router-bibit");
 const appRoutes = require("./src/routes/router-app");
 
 
-// Configurasi library session
 app.use(
     session({
       resave: false,
       saveUninitialized: false,
-      secret: "t@1k0ch3ng",
+      secret: "0ke123",
       name: "secretName",
       cookie: {
         sameSite: true,
@@ -24,7 +23,6 @@ app.use(
     })
   );
   
-  // Configurasi dan gunakan library
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
   app.use(flash());
@@ -38,18 +36,18 @@ app.use(
     next();
   });
   
-  // Setting folder views
+  // Setting folder views mengkoneksikan dengan views
   app.set("views", path.join(__dirname, "src/views"));
   app.set("view engine", "ejs");
   
-  // Gunakan routes yang telah didefinisikan
+  // Gunakan routes yang telah didefinisikan pupuk dan bibit serta app nya
   app.use("/pupuk", pupukRoutes);
   app.use("/bibit", bibitRoutes);
   app.use("/", appRoutes);
   
   console.log(app._router.stack);
   
-  // Gunakan port server
+  // Gunakan port server 5050
   app.listen(5050, () => {
     console.log("Server Berjalan di Port : " + 5050);
   });
