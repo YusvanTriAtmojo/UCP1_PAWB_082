@@ -62,5 +62,50 @@ module.exports ={
             res.send('Data kurang');
         }
     },    
+    editPupuk(req, res) {
+        const { id } = req.params;
+        pool.getConnection(function (err, connection) {
+            if (err) throw err;
+            connection.query('SELECT * FROM pupuks WHERE id = ?', [id], function (error, results) {
+                if (error) throw error;
+                if (results.length > 0) {
+                    res.render('editPupuk', {
+                        url: 'http://localhost:5050/',
+                        pupuk: results[0]
+                    });
+                } else {
+                    res.redirect('/pupuk');
+                }
+            });
+            connection.release();
+        });
+    },
+    updatePupuk(req, res) {
+        const { id } = req.params;
+        const { nama, jenis, berat } = req.body;
+        pool.getConnection(function (err, connection) {
+            if (err) throw err;
+            connection.query(
+                'UPDATE pupuks SET nama = ?, jenis = ?, berat = ? WHERE id = ?',
+                [nama, jenis, berat, id],
+                function (error, results) {
+                    if (error) throw error;
+                    res.redirect('/pupuk');
+                }
+            );
+            connection.release();
+        });
+    },
+    deletePupuk(req, res) {
+        const { id } = req.params;
+        pool.getConnection(function (err, connection) {
+            if (err) throw err;
+            connection.query('DELETE FROM pupuks WHERE id = ?', [id], function (error, results) {
+                if (error) throw error;
+                res.redirect('/pupuk');
+            });
+            connection.release();
+        });
+    },
 };
 
