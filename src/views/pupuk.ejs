@@ -9,19 +9,19 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-light" style="background-color: #63a4d3;">
+        <nav class="navbar navbar-light" style="background-color: #c2def2;">
             <a class="navbar-brand" href="<%= url %>">Pupuk</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
+                <ul class="nav nav-pills">
                     <li class="nav-item">
                         <a class="nav-link" href="<%= url %>">Home</a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="<%= url %>pupuk">Pupuk</a>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="<%= url %>pupuk">Pupuk</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<%= url %>bibit">Bibit</a>
@@ -34,15 +34,15 @@
             <h1>Pupuk</h1>
             <a href="<%= url + 'pupuk/add' %>" class="btn btn-info mb-3">Tambah Data Pupuk</a>
             <table class="table table-bordered">
-                <thead>
-                    <tr>
+                <thead class="thead-dark">
+                    <tr align="center">
                         <th>Nama</th>
                         <th>Berat</th>
                         <th>Jenis</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody align="center">
                     <% if (pupuks.length> 0) { %>
                         <% pupuks.forEach(function(pupuk) { %>
                             <tr>
@@ -56,7 +56,7 @@
                                     <%= pupuk.berat %>
                                 </td>
                                 <td><a href="<%= url + 'pupuk/edit/' + pupuk.id %>"
-                                        class="btn btn-warning btn-sm">Edit</a>
+                                        class="btn btn-warning btn-sm">Edit</a> <br> <br>
                                     <a href="<%= url + 'pupuk/delete/' + pupuk.id %>" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Yakin di hapus ?')">Delete</a>
                                 </td>
@@ -70,6 +70,13 @@
                 </tbody>
             </table>
         </div>
+        <style>
+            body,
+            html {
+                font-family: 'Times New Roman', Times, serif, sans-serif !important;
+                height: 100%;
+            }
+        </style>
 
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>

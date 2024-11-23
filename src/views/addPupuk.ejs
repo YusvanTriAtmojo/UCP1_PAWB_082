@@ -10,7 +10,7 @@
     </head>
     <body>
         <div class="container">
-            <h1>Tambah Data Pupuk</h1>
+            <h1 align="center">Tambah Data Pupuk</h1>
             <form method="POST" action="/pupuk/save">
                 <div class="form-group">
                     <label for="nama">Nama :</label>
@@ -23,9 +23,18 @@
                 <div class="form-group">
                     <label for="phone">Jenis :</label>
                     <input type="text" class="form-control" name="jenis" id="jenis" required>
-                </div>
+                </div> <br>
                 <button type="submit" class="btn btn-info">Kirim</button>
-            </form>
+            </form> <br> <br>
+            <a href="<%= url %>pupuk" class="btn btn-secondary">Back</a>
         </div>
+
+        <style>
+            body,
+            html {
+                font-family: 'Times New Roman', Times, serif, sans-serif !important;
+                height: 100%;
+            }
+        </style>
     </body>
 </html>
