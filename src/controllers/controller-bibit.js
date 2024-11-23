@@ -62,5 +62,50 @@ module.exports ={
             res.send('Data kurang');
         }
     },    
+    editBibit(req, res) {
+        const { id } = req.params;
+        pool.getConnection(function (err, connection) {
+            if (err) throw err;
+            connection.query('SELECT * FROM bibits WHERE id = ?', [id], function (error, results) {
+                if (error) throw error;
+                if (results.length > 0) {
+                    res.render('editBibit', {
+                        url: 'http://localhost:5050/',
+                        bibit: results[0]
+                    });
+                } else {
+                    res.redirect('/bibit');
+                }
+            });
+            connection.release();
+        });
+    },
+    updateBibit(req, res) {
+        const { id } = req.params;
+        const { nama, jumlah, berat } = req.body;
+        pool.getConnection(function (err, connection) {
+            if (err) throw err;
+            connection.query(
+                'UPDATE bibits SET nama = ?, jumlah = ?, berat = ? WHERE id = ?',
+                [nama, jumlah, berat, id],
+                function (error, results) {
+                    if (error) throw error;
+                    res.redirect('/bibit');
+                }
+            );
+            connection.release();
+        });
+    },
+    deleteBibit(req, res) {
+        const { id } = req.params;
+        pool.getConnection(function (err, connection) {
+            if (err) throw err;
+            connection.query('DELETE FROM bibits WHERE id = ?', [id], function (error, results) {
+                if (error) throw error;
+                res.redirect('/bibit');
+            });
+            connection.release();
+        });
+    },
 };
 
